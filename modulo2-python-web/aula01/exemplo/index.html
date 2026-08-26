@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Testando nossa API</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 800px;
+               margin: 2rem auto; padding: 0 1rem; background: #f4f4f4; }
+        h1 { color: #C8102E; }
+        .card { background: white; border-radius: 8px; padding: 1rem;
+                margin: 0.5rem 0; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        .nome { font-weight: bold; color: #2E5FAC; }
+        .status { font-size: 0.8rem; padding: 2px 8px; border-radius: 10px; }
+        .ativo   { background: #d4edda; color: #155724; }
+        .inativo { background: #f8d7da; color: #721c24; }
+        #loading { color: #666; padding: 2rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Usuários da Nossa API</h1>
+    <div id="lista"><p id="loading">Carregando...</p></div>
+    <script>
+        const buscarUsuarios = async () => {
+            try {
+                // Buscar da nossa propria API FastAPI
+                const response = await fetch('http://localhost:8000/usuarios');
+                if (!response.ok) throw new Error(`Erro ${response.status}`);
+                const usuarios = await response.json();
+
+                const lista = document.querySelector('#lista');
+                lista.innerHTML = usuarios.map(u => `
+                    <div class="card">
+                        <span class="nome">${u.nome}</span>
+                        <span class="status ${u.ativo ? 'ativo' : 'inativo'}">
+                            ${u.ativo ? 'Ativo' : 'Inativo'}
+                        </span>
+                        <p>${u.cargo}</p>
+                    </div>
+                `).join('');
+            } catch (erro) {
+                document.querySelector('#lista').innerHTML =
+                    '<p style="color:red">Erro: ' + erro.message + '</p>';
+            }
+        };
+        buscarUsuarios();
+    </script>
+</body>
+</html>
