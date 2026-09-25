@@ -13,7 +13,7 @@ class Departamento(Base):
         return f'<Departamentos id={self.id} nome={self.nome}>'
 
 class Cargo(Base):
-    __tablename__='Cargos'
+    __tablename__='cargos'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     titulo = Column(String(100), nullable=False)
@@ -24,3 +24,16 @@ class Cargo(Base):
 
     def __repr__(self):
         return f'<Cargo {self.titulo} {self.nivel}>'
+
+class Funcionario(Base):
+    __tablename__='funcionarios'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    nome = Column(String(100), nullable=False)
+    email = Column(String(100), nullable=False, unique=True)
+    telefone = Column(String(14), nullable=False)
+    salario = Column(Float)
+    ativo = Column(Boolean, default=True)
+
+    def __repr__(self):
+            return f'<Funcionario {self.id} {self.nome} {self.ativo}>'

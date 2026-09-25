@@ -1,5 +1,5 @@
 from app.database import SessionLocal
-from app.models import Departamento, Cargo
+from app.models import Departamento, Cargo, Funcionario
 
 def popular_banco():
     db = SessionLocal()   # abrir sessão
@@ -21,6 +21,13 @@ def popular_banco():
             Cargo(titulo='Desenvolvedor', nivel='Pleno', salario_min=4000, salario_max=7000),
             Cargo(titulo='Designer', nivel='Junior', salario_min=2200, salario_max=3500),
             Cargo(titulo='Analista RH', nivel='Pleno', salario_min=3500, salario_max=6000),
+        ])
+
+        db.add_all([
+            Funcionario(nome='Toin Lindão', email='toin@gmail.com', telefone='61999679999', salario=40000.),
+            Funcionario(nome='Bea', email='bea@gmail.com', telefone='61999679999', salario=12000.),
+            Funcionario(nome='Dinha', email='dinha@gmail.com', telefone='61999679999', salario=0.),
+            Funcionario(nome='Sarah', email='sarah@gmail.com', telefone='61999679999', salario=20.),
         ])
 
         db.commit()     # confirma tudo no banco de uma vez
