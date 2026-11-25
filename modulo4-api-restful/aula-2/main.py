@@ -5,7 +5,7 @@ from typing import List
 from database import engine, Base, get_db
 from models import Usuario
 from schemas import UsuarioCreate, UsuarioPatch, UsuarioResponse, ErroResponse
-
+# teste
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
