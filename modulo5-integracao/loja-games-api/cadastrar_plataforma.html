@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Plataforma</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8eef7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #243b64;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e40af;
+        }
+
+        #mensagem {
+            text-align: center;
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Cadastrar Plataforma</h1>
+
+        <form id="formulario">
+
+            <label for="plataforma">Nome da plataforma:</label>
+
+            <input
+                type="text"
+                id="plataforma"
+                placeholder="Digite o nome da plataforma"
+            >
+
+            <button type="submit">Cadastrar</button>
+
+            <p id="mensagem"></p>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        const formulario = document.getElementById("formulario");
+
+        formulario.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const plataforma = document.getElementById("plataforma").value.trim();
+            const mensagem = document.getElementById("mensagem");
+
+            mensagem.textContent = "";
+
+            if (plataforma === "") {
+                mensagem.textContent = "Digite o nome da plataforma!";
+                return;
+            }
+
+            localStorage.setItem("plataforma", plataforma);
+
+            window.location.href = "avaliar_jogo.html";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
